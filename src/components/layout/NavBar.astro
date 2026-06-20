@@ -1,0 +1,45 @@
+---
+
+import LogoMarkerDark from "../icons/inertia.svg";
+import LogoMarkerLight from "../icons/inertia.svg";
+
+import NavDropDown from "./NavDropDown.astro";
+import IconButton from "../IconButton.astro";
+import NavLink from "./NavLink.astro";
+import NavDropDownLink from "./NavDropDownLink.astro";
+---
+
+<nav id="nav-wrapper" class="bg-background-light-00 dark:bg-background-dark-10 fixed top-0 right-0 left-0 z-50 transition-shadow">
+    <div class="mx-auto flex max-w-7xl flex-row items-center gap-2 px-4 py-2">
+        <button id="nav-toggle" title={"Toggle nav"} class="btn btn-outline btn-gray mr-2 rounded-sm leading-none md:hidden">
+        </button>
+        <a href="/" class="leading-none" tabindex="-1" aria-hidden={true}>
+            <picture>
+            </picture>
+        </a>
+        <div
+                id="nav-menu"
+                class="bg-background-light-10 dark:bg-background-dark-90 absolute top-full right-0 left-0 flex w-full flex-col gap-4 p-4 shadow-lg max-md:hidden! md:relative md:flex md:w-auto md:flex-row md:items-center md:gap-0 md:bg-transparent md:p-0 md:shadow-none"
+        >
+            <NavDropDown label="Products">
+                <NavDropDownLink href="software/inertia">Inertia</NavDropDownLink>
+            </NavDropDown>
+            <NavLink href="https://inertiaorg.github.io/starlight-docs" target="_blank" className="inline-flex items-center">
+                Docs
+            </NavLink>
+        </div>
+
+        <div class="grow"></div>
+        <IconButton icon="mdi:github" label="GitHub" href="https://github.com/PaperMC" external />
+    </div>
+</nav>
+
+<script>
+    document.getElementById("nav-toggle")?.addEventListener("click", () => {
+        document.getElementById("nav-menu")?.classList?.toggle("max-md:hidden!");
+    });
+    window.addEventListener("scroll", () => {
+        const wrapper = document.getElementById("nav-wrapper");
+        wrapper?.classList?.toggle("shadow-lg", window.scrollY > 1);
+    });
+</script>
